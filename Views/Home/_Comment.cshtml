@@ -1,0 +1,16 @@
+@model Comment
+
+<form action="/book/@ViewBag.Books.BookId/@Model.MessageId/comment" method="post">
+    <div class="row mb-5">
+        <div class="col-md-6 ml-4">
+            <div class="form-group">
+                <label>Post a Comment:</label>
+                <input asp-for="CContent" class="form-control" style="height: 75px;"/>
+                <span asp-validation-for="CContent" class="text-danger"></span>
+                <input type="hidden" asp-for="MessageId" value="@Model.MessageId">
+                <input type="hidden" asp-for="UserId" value="@ViewBag.User.UserId">
+            </div>
+            <input type="submit" class="btn btn-info float-right" value="Post Comment">
+        </div>
+    </div>
+</form>

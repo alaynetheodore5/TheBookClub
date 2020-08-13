@@ -1,0 +1,36 @@
+@model LoginUser
+
+<link rel="stylesheet" href="~/css/style.css"/>
+
+<div class="logo border-bottom"> 
+    <h1><a href="/"><img src="~/Images/Logo.png" style="height: 40px" alt="TheBookClub Logo"></a>TheBookClub</h1>
+</div>
+
+<div class="row login text-white text-center" style="display: inline-block; margin-left: 40%;">
+    <h1 class="cover-heading mt-5">Welcome back!</h1>
+    <p class="lead">Enter your details -OR- use login info below.</p>
+    <p>Email: <b class="text-info">user@email.com</b></p>
+    <p>Password: <b class="text-info">Helloworld1!</b></p>
+    <form action="/login" method="post">
+        <div class="row">
+            <div class="col-md-11">
+                <div class="form-group">
+                    <input asp-for="LoginEmail" class="form-control" placeholder="Email"/>
+                    <span asp-validation-for="LoginEmail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="LoginPassword" class="form-control" placeholder="Password"/>
+                    <span asp-validation-for="LoginPassword" class="text-danger"></span>
+                </div>
+                <div class="logbutton">
+                    <input type="submit" class="btn btn-info btn-block float-right col-md-5" value="LOG IN">
+                </div>
+            </div>
+        </div>
+    </form>
+    <p class="mt-5">Don't have an account?</p>
+    <a href="registerindex" class="btn btn-outline-info btn-block col-md-11 mb-5">SIGN UP FOR THEBOOKCLUB</a>
+</div>
+
+
+

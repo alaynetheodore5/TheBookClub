@@ -1,0 +1,121 @@
+@model List<Book>
+
+<link rel="stylesheet" href="~/css/style.css"/>
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">TheBookClub</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/books/all">All Books</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout" tabindex="-1">Logout</a>
+            </li>
+        </ul>
+        <form action="/search" method="post" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" aria-label="Search for a Book">
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+<section class="jumbotron text-center">
+    <h1>Welcome @ViewBag.User.Name!</h1>
+    <p class="lead text-muted">Member since: @ViewBag.User.CreatedAt.ToShortDateString()</p>
+</section>
+
+<div class="homebanner">
+    <div class="bannerwords">
+        <h4><img src="~/Images/Logo.png" style="height: 40px" alt="TheBookClub Logo">TheBookClub</h4>
+        <h2>August's top picks.</h2>
+        <p>
+            <a href="/books/all" class="btn btn-info">VIEW ALL BOOKS</a>
+            <a href="/newbook" class="btn btn-info">ADD A BOOK</a>
+            @if(ViewBag.User.UserAdmin == true)
+            {
+                <a href="/adminhome" class="btn btn-warning">ADMIN HOME</a>
+            }
+        </p>
+    </div>
+</div>
+@* ********************main****************** *@
+
+<div class="container marketing">
+    <div class="row mt-5 mb-2">
+        @foreach(Book b in Model)
+        {
+        <div class="col-md-6">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static bg-white">
+                <strong class="d-inline-block mb-2 text-info">TRENDING NOW</strong>
+                <h4 class="mb-0">@b.Title</h4>
+            <div class="mb-1 text-muted">Added: @b.CreatedAt.ToShortDateString()</div>
+                <p class="card-text mb-auto">By: @b.Author</p>
+                        <div class="btn-group">
+                <a href="/book/@b.BookId" class="btn btn-sm btn-info">View</a>
+                @if(b.Members.Any( w => w.UserId == ViewBag.User.UserId))
+                {
+                    <a class="btn btn-sm btn-outline-secondary" asp-action="ToggleParty" asp-route-bookId="@b.BookId" asp-route-status="remove">Remove</a>
+                }
+                else
+                {
+                    <a class="btn btn-sm btn-outline-info" asp-action="ToggleParty" asp-route-bookId="@b.BookId" asp-route-status="add">Add</a>
+                }
+            </div>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+                <img src="@b.ImgUrl" width="200" height="250" width="100%" height="100%"  alt="@b.Title">
+            </div> 
+        </div>
+        </div>
+        }
+    </div>
+
+    <h3 class="pb-4 mb-4 border-bottom text-white">WHAT'S ON YOUR LIST:</h3>
+        @if(@ViewBag.MyFaves.Count == 0)
+        {
+            <div class="text-white ">
+                <h5>You haven't favorited any books yet..</h5>
+                <p>Add a book to get started!</p>
+            </div>
+        }
+        else
+        {
+            @foreach(Book b in ViewBag.MyFaves)
+            {
+
+            <div class="col-md-4" style="display: inline-block">
+                <div class="card mb-4 shadow-sm">
+                    <img src="@b.ImgUrl" class="card-img-top hidden" style="height: 400px" alt="@b.Title">
+                    <div class="card-body">
+                        <p class="card-text">@b.Title</p>
+                        <p class="card-text">By: @b.Author</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="/book/@b.BookId" class="btn btn-sm btn-outline-secondary">View</a>
+                                @if(b.Members.Any( w => w.UserId == ViewBag.User.UserId))
+                                {
+                                    <a class="btn btn-sm btn-outline-secondary" asp-action="ToggleParty" asp-route-bookId="@b.BookId" asp-route-status="remove">Remove</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-sm btn-outline-secondary" asp-action="ToggleParty" asp-route-bookId="@b.BookId" asp-route-status="add">Add</a>
+                                }
+                            </div>
+                            <small class="text-muted">Added: @b.CreatedAt.ToShortDateString()</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        }    
+</div>
+
+

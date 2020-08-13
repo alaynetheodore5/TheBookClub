@@ -1,0 +1,163 @@
+.jumbotron {
+    height: 10rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-bottom: 0;
+    background-color: #fff;
+}
+@media (min-width: 768px) {
+    .jumbotron {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    }
+}
+
+.jumbotron p:last-child {
+    margin-bottom: 0;
+}
+
+.jumbotron h1 {
+    font-weight: 300;
+}
+
+.jumbotron .container {
+    max-width: 40rem;
+}
+
+footer {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+html,
+body {
+height: 100%;
+background-color: #333;
+}
+
+.card-body {
+    height: 150px;
+}
+
+.banner img {
+    height: 9rem;
+}
+/* ************ start page ************ */
+.start1 {
+    height: 35rem;
+    background-image: url("/Images/StartBackground.jpg");
+    text-align: center;
+    background-color: pink;
+    color: white;
+    padding-top: 10rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.start2 {
+    height: 20rem;
+    background-color: #333;
+    color: white;
+    padding-top: 4rem;
+    padding-left: 8rem;
+}
+
+/* ************ login and reg pages ************ */
+
+.logo {
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+.login {
+    text-align: center;
+    color: white;
+    display: inline-block; 
+    margin-left: 33%;
+}
+
+/* ************ user home ************ */
+
+.homebanner {
+    background-image: url("/Images/HomeBanner.jpeg");
+    height: 30rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.mainbanner {
+    background-image: url("/Images/HomeBanner.jpeg");
+    height: 30rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bannerwords {
+    margin-left: 57%;
+    padding-top: 7%;
+}
+
+.homemain {
+    margin-top: 1rem;
+
+}
+
+/* ************ show all ************ */
+
+/* .allmain {
+    display: inline-block;
+} */
+
+.bookicons {
+    margin: 1rem;
+}
+
+/* ************ add book ************ */
+
+.newbook {
+    color:white;
+    margin-left: 5%;
+    /* margin-top: 5%;
+    margin-bottom: 5%; */
+}
+
+.addimg {
+    background-image: url("/Images/BookMountains.jpeg");
+    /* height: 100%; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+} 
+
+.addbuttons {
+    margin-left: 35%;
+    margin-top: 20%;
+}
+
+/* ************ show individual book ************ */
+
+/* Carousel base class */
+.carousel {
+    margin-bottom: 4rem;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+    height: 32rem;
+}
+.carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+}

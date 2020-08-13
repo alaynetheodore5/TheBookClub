@@ -1,0 +1,77 @@
+@model Book
+
+<link rel="stylesheet" href="~/css/style.css"/>
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">TheBookClub</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout" tabindex="-1">Logout</a>
+            </li>
+        </ul>
+        @* <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search for a Book">
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+        </form> *@
+    </div>
+</nav>
+
+<section class="jumbotron text-center">
+    <div class="container">
+    <h1>Add a Book</h1>
+    <p class="lead text-muted">to TheBookClub</p>
+        @* <p>
+            <a href="/home" class="btn btn-outline-info my-2">Back to Home</a>
+            <a href="/books/all" class="btn btn-outline-info my-2">View all Books</a>
+        </p> *@
+        </div>
+</section>
+
+<div class="newbook">
+    <div class="row">
+        <div class="col mt-5 mb-5">
+            <form action="/newbook/add" method="post">
+                <div class="row">
+                    <div class="col-md-11">
+                        <div class="form-group">
+                            <label>Title:</label>
+                            <input asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Author:</label>
+                            <input asp-for="Author" class="form-control" />
+                            <span asp-validation-for="Author" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ImgUrl">Img Url:</label>
+                            <input asp-for="ImgUrl" class="form-control">
+                            <span class="text-danger" asp-validation-for="ImgUrl"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Description:</label>
+                            <textarea asp-for="Description" class="form-control" ></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <input type="submit" value="Add Book" class="btn btn-info float-right">
+                    </div>    
+                </div>
+            </form>
+        </div>
+        <div class="col addimg">
+            <div class="addbuttons">
+                <p>
+                    <a href="/home" class="btn btn-info my-2">Back to Home</a>
+                    <a href="/books/all" class="btn btn-info my-2">View all Books</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
