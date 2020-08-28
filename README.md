@@ -12,22 +12,38 @@ Users can register or login to TheBookClub.
 
 View your dashboard, add books, search or view for books and check out the discussion boards for each specific book. 
 
-```
-Give examples
-```
-
-### Examples
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+## Example Code
 
 ```
-Give the example
+        [HttpGet("home")]
+        public IActionResult Home()
+        {
+            User current = GetUser();
+            if (current == null)
+            {
+                return Redirect ("/");
+            }
+            ViewBag.User = current;
+            List<Book> Trending = _context.Books
+                                            .Include(b => b.Adder)
+                                            .Include(b => b.Members)
+                                            .ThenInclude(wp => wp.ClubGoer)
+                                            .OrderBy( b => b.CreatedAt )
+                                            .Take(2)
+                                            .ToList();
+            ViewBag.MyFaves = _context.Users
+                                .Include(u =>u.MyClubs )
+                                .ThenInclude( bc => bc.ThisBook)
+                                .FirstOrDefault(u => u.UserId == current.UserId)
+                                .MyClubs.Select( bc => bc.ThisBook)
+                                .ToList();
+            return View("Home", Trending);
+        }
 ```
 
-And repeat
+### Technologies Used
 
-```
-until finished
-```
+- C#/.Net
+- SQL
+- CSS/HTML
+- Bootstrap
